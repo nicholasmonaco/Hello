@@ -155,6 +155,7 @@ public class GameManager : MonoBehaviour
                 enemy.Init(roomsOnPath, ScareType.WalkTowards);
                 
                 MonsterSpawned = true;
+                DistanceEnemySummoned = true;
 
                 DistanceMultiplier = 1;
                 break;
@@ -251,20 +252,20 @@ public class GameManager : MonoBehaviour
     private bool Dead = false;
 
     public void TryDie() {
-        if (/*!CanDie ||*/ Dead) return;
+        if (!CanDie || Dead || !DistanceEnemySummoned) return;
 
-        //bool rng = Random.Range(0, 100f) <= 25f; //25% chance to die
-        //if (!rng) return;
+        bool rng = Random.Range(0, 100f) <= 18f; //18% chance to die
+        if (!rng) return;
 
         RoomController lastRoom = Rooms[LastGridPos];
 
         Vector3 spawnPoint = lastRoom.transform.position + (lastRoom.transform.position + PlayerTransform.position)/2f;
         spawnPoint.y = 0;
 
-        Vector3 ff = (PlayerTransform.position - spawnPoint).normalized;
+        Vector3 ff = (PlayerTransform.position - spawnPoint + new Vector3(0,-4,0)).normalized;
         Quaternion facing = Quaternion.LookRotation(ff, Vector3.up);
 
-        Enemy_Distance enemy = Instantiate(MonsterDistance_Prefab, spawnPoint, facing, _entityHolder).GetComponent<Enemy_Distance>();
+        Enemy_Distance enemy = Instantiate(MonsterDistance_Prefab, spawnPoint + new Vector3(0, -0.5f,0), facing, _entityHolder).GetComponent<Enemy_Distance>();
         List<RoomController> roomssss = new List<RoomController>() {
             lastRoom,
             CurrentRoom
@@ -274,7 +275,7 @@ public class GameManager : MonoBehaviour
 
         //if the player enters a room, the enemy spawns in the last room they were in
         //if they leave the current room without seeing the enemy, then it despawns
-        //if they turn around and see it, they die
+        //if they turn around and see it, they die <- this isnt implemented yet
     }
 
 

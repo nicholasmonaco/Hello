@@ -1,18 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
+//using UnityEditor;
 
 public class WorldGenerator : MonoBehaviour
 {
-    [SerializeField] internal GameManager GameManager;
-    [SerializeField] internal int Size = 10;
-    [SerializeField] internal float RoomSize = 14;
-    [SerializeField] internal Transform _roomHolder;
-    [SerializeField] internal GameObject _roomPrefab;
+    [SerializeField] public GameManager GameManager;
+    [SerializeField] public int Size = 10;
+    [SerializeField] public float RoomSize = 14;
+    [SerializeField] public Transform _roomHolder;
+    [SerializeField] public GameObject _roomPrefab;
 
 
-    internal void Generate() {
+    public void Generate() {
         for(int y = -Size; y <= Size; y++) {
             for (int x = -Size; x <= Size; x++) {
                 Vector3 position = new Vector3(x * RoomSize, 0, y * RoomSize);
@@ -22,7 +22,7 @@ public class WorldGenerator : MonoBehaviour
         }
     }
 
-    internal void Clear() {
+    public void Clear() {
         Transform[] rooms = _roomHolder.GetComponentsInChildren<Transform>();
 
         for (int i = 1; i < rooms.Length; i++) {
@@ -35,7 +35,7 @@ public class WorldGenerator : MonoBehaviour
     }
 
 
-    internal void SetAllDoorways(bool open) {
+    public void SetAllDoorways(bool open) {
         RoomController[] rooms = _roomHolder.GetComponentsInChildren<RoomController>();
 
         for (int i = 0; i < rooms.Length; i++) {
@@ -47,35 +47,35 @@ public class WorldGenerator : MonoBehaviour
     
 }
 
-[CustomEditor(typeof(WorldGenerator))]
-class WorldGeneratorHelperEditor : Editor {
-    public override void OnInspectorGUI() {
-        DrawDefaultInspector();
+//[CustomEditor(typeof(WorldGenerator))]
+//class WorldGeneratorHelperEditor : Editor {
+//    public override void OnInspectorGUI() {
+//        DrawDefaultInspector();
 
-        WorldGenerator script = (WorldGenerator)target;
+//        WorldGenerator script = (WorldGenerator)target;
 
-        //EditorGUILayout.IntField("Size", script.Size);
-        //EditorGUILayout.FloatField("Room Size", script.RoomSize);
-        //EditorGUILayout. ("Size", script.Size);
+//        //EditorGUILayout.IntField("Size", script.Size);
+//        //EditorGUILayout.FloatField("Room Size", script.RoomSize);
+//        //EditorGUILayout. ("Size", script.Size);
 
-        if (GUILayout.Button("Regenerate")) {
-            script.Clear();
-            script.Generate();
-        }
+//        if (GUILayout.Button("Regenerate")) {
+//            script.Clear();
+//            script.Generate();
+//        }
 
-        if (GUILayout.Button("Generate")) {
-            script.Generate();
-        }
+//        if (GUILayout.Button("Generate")) {
+//            script.Generate();
+//        }
 
-        if (GUILayout.Button("Clear")) {
-            script.Clear();
-        }
+//        if (GUILayout.Button("Clear")) {
+//            script.Clear();
+//        }
 
-        if (GUILayout.Button("Open Doorways")) {
-            script.SetAllDoorways(false);
-        }
-        if (GUILayout.Button("Close Doorways")) {
-            script.SetAllDoorways(true);
-        }
-    }
-}
+//        if (GUILayout.Button("Open Doorways")) {
+//            script.SetAllDoorways(false);
+//        }
+//        if (GUILayout.Button("Close Doorways")) {
+//            script.SetAllDoorways(true);
+//        }
+//    }
+//}

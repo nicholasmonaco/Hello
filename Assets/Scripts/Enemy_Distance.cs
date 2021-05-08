@@ -214,7 +214,7 @@ public class Enemy_Distance : MonoBehaviour
         //todo
 
         // allow player death 
-        Game.Manager.DelayCanDie();
+        //Game.Manager.DelayCanDie();
 
         // destroy this
         Destroy(this.gameObject);
@@ -288,7 +288,7 @@ public class Enemy_Distance : MonoBehaviour
         Game.Manager.GlobalAudioSource.PlayOneShot(_dieScareSFX, 0.4f);
 
         //rptate to face face
-        const float rotateTimer = 2;
+        const float rotateTimer = 1.5f;
         float timer = rotateTimer;
         Quaternion origCamRot = Camera.main.transform.rotation;
 
@@ -298,7 +298,7 @@ public class Enemy_Distance : MonoBehaviour
         while(timer > 0) {
             timer -= Time.deltaTime;
             Camera.main.transform.rotation = Quaternion.Lerp(facing, origCamRot, timer / rotateTimer);
-            Game.Manager.SetStatic((1 - timer / rotateTimer) / 2f);
+            Game.Manager.SetStatic((1 - timer / rotateTimer) / 3f);
             yield return null;
         }
 
@@ -306,12 +306,10 @@ public class Enemy_Distance : MonoBehaviour
         yield return new WaitForEndOfFrame();
 
         //fuzz
-        Game.Manager.StartCoroutine(Game.Manager.FadeUpStatic(4));
-
-        yield return new WaitForSeconds(3.5f);
+        Game.Manager.StartCoroutine(Game.Manager.FadeUpStatic(1));
 
         //fade to black
-        yield return StartCoroutine(Game.Manager.Fader.Fade_C(2));
+        yield return StartCoroutine(Game.Manager.Fader.Fade_C(1.5f));
 
         //wait
         yield return new WaitForSeconds(1.5f);

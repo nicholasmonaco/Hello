@@ -25,6 +25,8 @@ public class PlayerController : AbstractEntity
     protected override void Start() {
         base.Start();
 
+        _footstepSoundEmitter.volume = Game.VolumeScale;
+
         _lastPos = transform.position;
         _traveledDistance = 0;
         _footstepTimer = _footstepTimerMax;
