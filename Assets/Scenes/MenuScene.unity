@@ -915,7 +915,10 @@ MonoBehaviour:
     Scare
     SFX from SCP Containment Breach
 
-    Monster model from OpenGameArt.org by VideroBoy'
+    Monster model from OpenGameArt.org by VideroBoy
+
+    Hand
+    model from OpenGameArt.org by UnkleMikey'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 514a42383804f984ca5f359eff277748, type: 2}
   m_sharedMaterial: {fileID: 2793839451732105304, guid: 514a42383804f984ca5f359eff277748,
@@ -1649,6 +1652,7 @@ GameObject:
   - component: {fileID: 863433169}
   - component: {fileID: 863433171}
   - component: {fileID: 863433170}
+  - component: {fileID: 863433172}
   m_Layer: 5
   m_Name: Name
   m_TagString: Untagged
@@ -1695,7 +1699,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Hello
+  m_text: Hell<color=white>o</color>
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 514a42383804f984ca5f359eff277748, type: 2}
   m_sharedMaterial: {fileID: 2793839451732105304, guid: 514a42383804f984ca5f359eff277748,
@@ -1773,6 +1777,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 863433168}
   m_CullTransparentMesh: 1
+--- !u!114 &863433172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 863433168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3527fa74f6d0ece4dbb3f9bde832c4ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _title: {fileID: 863433170}
 --- !u!1 &963866318
 GameObject:
   m_ObjectHideFlags: 0
